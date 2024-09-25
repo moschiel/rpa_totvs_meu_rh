@@ -12,6 +12,7 @@ login = ''              # Login da plataforma MeuRH
 password = ''           # Senha da plataforma MeuRH
 start_time = '08:00'    # Horário de entrada
 end_time = '17:48'      # Horário de saída
+justification = '.'     # Justificativa da batida em atraso
 
 # Inicializar o Service do Edge com o caminho do msedgedriver
 service = Service(executable_path=driver_path)
@@ -25,8 +26,7 @@ driver.maximize_window()
 # Acessar a página de login
 driver.get('https://actconsultoria146752.protheus.cloudtotvs.com.br:1804/meurh01/#/login')
 
-# Aguardar até que a página seja completamente carregada
-#time.sleep(2)
+time.sleep(1)
 
 # Localizar o campo de input pelo atributo placeholder e digitar o usuário
 xpath = "//input[@placeholder='Informe o seu usuário']"
@@ -163,7 +163,7 @@ for i in range(rows_count):
                         xpath = "//textarea[@placeholder='Escreva a sua justificativa']"
                         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
                         justify_field = driver.find_element(By.XPATH, xpath)
-                        justify_field.send_keys('.')
+                        justify_field.send_keys(justification)
 
                         time.sleep(1)
 
@@ -176,7 +176,6 @@ for i in range(rows_count):
                         time.sleep(1)
 
                         # Aguarda marcação dar sucesso
-
                         # xpath = "//*[text()='Batida inserida com sucesso']"
                         # WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
 
@@ -189,7 +188,6 @@ for i in range(rows_count):
                             time.sleep(1)
                     
                     time.sleep(3)
-                    
                     # Volta para a página anterior
                     driver.back()
                     time.sleep(1)

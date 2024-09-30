@@ -7,9 +7,9 @@ from datetime import datetime
 import time
 
 # variaveis
-driver_path = ''        # Caminho para o driver do navegador
-login = ''              # Login da plataforma MeuRH
-password = ''           # Senha da plataforma MeuRH
+driver_path = '' # Caminho para o driver do navegador
+login = ''   # Login da plataforma MeuRH
+password = ''     # Senha da plataforma MeuRH
 start_time = '08:00'    # Horário de entrada
 end_time = '17:48'      # Horário de saída
 justification = '.'     # Justificativa da batida em atraso
@@ -112,7 +112,7 @@ for i in range(rows_count):
                     WebDriverWait(button_cell, 10).until(EC.element_to_be_clickable((By.TAG_NAME, "li")))
                     include_time_option = button_cell.find_elements(By.TAG_NAME, "li")[1]
                     include_time_option.click()
-                    time.sleep(1)
+                    time.sleep(0.5)
 
                     # Prossegue para incluir duas marcações, uma de entrada e outra de saída
                     for k in range(2):
@@ -131,7 +131,7 @@ for i in range(rows_count):
                         time_field.send_keys(hour) 
                         time_field.send_keys(minutes)
 
-                        time.sleep(1)
+                        time.sleep(0.5)
 
                         # Clica no campo radial de entrada ou saída
                         if(k==0): # entrada
@@ -142,7 +142,7 @@ for i in range(rows_count):
                         radial_field = driver.find_element(By.XPATH, xpath)
                         radial_field.click()
 
-                        time.sleep(1)
+                        time.sleep(0.5)
 
                         # Clica para abrir o dropdown do motivo
                         xpath = '//*[@id="sel-reason"]/po-field-container/div/div[2]'
@@ -150,14 +150,14 @@ for i in range(rows_count):
                         dropdown_field = driver.find_element(By.XPATH, xpath)
                         dropdown_field.click()
 
-                        time.sleep(1)
+                        time.sleep(0.5)
 
                         # Clica na primeira opção do dropdown para incluir o motivo
                         WebDriverWait(dropdown_field, 10).until(EC.element_to_be_clickable((By.TAG_NAME, "li")))
                         reason_option = dropdown_field.find_elements(By.TAG_NAME, "li")[0]
                         reason_option.click()
 
-                        time.sleep(1)
+                        time.sleep(0.5)
 
                         # Localizar o campo de input pelo atributo placeholder e digita a justificativa
                         xpath = "//textarea[@placeholder='Escreva a sua justificativa']"
@@ -165,7 +165,7 @@ for i in range(rows_count):
                         justify_field = driver.find_element(By.XPATH, xpath)
                         justify_field.send_keys(justification)
 
-                        time.sleep(1)
+                        time.sleep(0.5)
 
                         # Clica pra confimar a marcação
                         xpath = "//*[text()='Confirmar']"
@@ -173,7 +173,7 @@ for i in range(rows_count):
                         confirm_button = driver.find_element(By.XPATH, xpath)
                         confirm_button.click()
 
-                        time.sleep(1)
+                        time.sleep(0.5)
 
                         # Aguarda marcação dar sucesso
                         # xpath = "//*[text()='Batida inserida com sucesso']"
@@ -185,7 +185,7 @@ for i in range(rows_count):
                             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
                             new_entry_button = driver.find_element(By.XPATH, xpath)
                             new_entry_button.click()
-                            time.sleep(1)
+                            time.sleep(0.5)
                     
                     time.sleep(3)
                     # Volta para a página anterior

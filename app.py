@@ -7,7 +7,7 @@ from datetime import datetime
 import time
 
 # variaveis
-driver_path = '' # Caminho para o driver do navegador
+driver_path = './msedgedriver.exe' # Caminho para o driver do navegador
 login = ''   # Login da plataforma MeuRH
 password = ''     # Senha da plataforma MeuRH
 start_time = '08:00'    # Horário de entrada
@@ -97,7 +97,7 @@ for i in range(rows_count):
         current_day = datetime.now().day
 
         # Ignoramos dias do futuro
-        if(day <= current_day):
+        if(day < current_day):
             # Ignoramos sábado e domingo
             if(week != '' and week != 'sábado' and week != 'domingo'):  
                 # Ignoramos se ja exitir qualquer marcação no dia
@@ -105,7 +105,7 @@ for i in range(rows_count):
                     print('Marcando ponto do dia ' + date + ', ' + week)
                     
                     # Clica para abrir o dropdown de opcoes
-                    open_dropbown_button = button_cell.find_element(By.TAG_NAME, "span")
+                    open_dropbown_button = button_cell.find_element(By.CLASS_NAME, "see-more")
                     open_dropbown_button.click()
                     
                     # Clica na segunda opção do dropdown para incluir marcação
